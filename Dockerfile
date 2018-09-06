@@ -1,4 +1,4 @@
-FROM debian:9.5
+FROM debian:stretch
 
 ENV IVERILOG_VERSION=v10_2
 
