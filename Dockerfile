@@ -1,5 +1,7 @@
 FROM debian:9.5
 
+ENV IVERILOG_VERSION=v10_2
+
 LABEL \
       com.github.lerwys.docker.dockerfile="Dockerfile" \
       com.github.lerwys.vcs-type="Git" \
@@ -18,7 +20,7 @@ RUN apt-get -y update && \
         git && \
     rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/steveicarus/iverilog && \
+RUN git clone --branch=${IVERILOG_VERSION} https://github.com/steveicarus/iverilog && \
     cd iverilog && \
     bash autoconf.sh && \
     ./configure && \
