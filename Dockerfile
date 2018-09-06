@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:stretch as builder
 
 ENV IVERILOG_VERSION=v10_2
 
@@ -28,3 +28,7 @@ RUN git clone --branch=${IVERILOG_VERSION} https://github.com/steveicarus/iveril
     make install && \
     cd && \
     rm -rf iverilog
+
+FROM debian:stretch
+
+COPY --from=builder /usr/local/bin /usr/local/bin
